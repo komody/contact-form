@@ -20,6 +20,9 @@ Route::get('/', [ContactController::class, 'index']);
 
 Route::post('/contacts/confirm', [ContactController::class, 'confirm']);
 Route::post('/contacts', [ContactController::class, 'store']);
+Route::get('/thanks', function () {
+    return view('thanks');
+})->name('thanks');
 
 // 認証関連
 Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('register');
