@@ -6,6 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>お問い合わせ確認画面</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
   <link rel="stylesheet" href="{{ asset('css/confirm.css') }}" />
 </head>
@@ -21,9 +24,7 @@
 
   <main>
     <div class="confirm__content">
-      <div class="confirm__heading">
-        <h2>Confirm</h2>
-      </div>
+        <h2 class="confirm__title">Confirm</h2>
       <form class="form" action="/contacts" method="post">
         @csrf
         <div class="confirm-table">

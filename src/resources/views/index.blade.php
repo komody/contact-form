@@ -6,6 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>入力画面</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inika:wght@400;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{{ asset('css/sanitize.css') }}" />
   <link rel="stylesheet" href="{{ asset('css/index.css') }}" />
 </head>
@@ -21,17 +24,15 @@
 
   <main>
     <div class="contact-form__content">
-      <div class="contact-form__heading">
-        <h2>Contact</h2>
-      </div>
-      <form class="form" action="/contacts/confirm" method="post">
+      <h2 class="contact-form__title">Contact</h2>
+      <form class="form" action="/contacts/confirm" method="post" novalidate>
         @csrf
         <div class="form__group">
           <div class="form__group-title">
             <span class="form__label--item">お名前</span>
-            <span class="form__label--required">必須</span>
+            <span class="form__label--required">※</span>
           </div>
-          <div class="form__group-content">
+          <div class="form__group-content {{ $errors->has('first_name') || $errors->has('last_name') ? 'has-error' : '' }}">
             <div class="form__input--text form__input--name">
               <input type="text" name="first_name" value="{{ old('first_name', $oldData['first_name'] ?? '') }}" placeholder="例:山田" maxlength="8" required />
               <input type="text" name="last_name" value="{{ old('last_name', $oldData['last_name'] ?? '') }}" placeholder="例:太郎" maxlength="8" required />
@@ -49,9 +50,9 @@
         <div class="form__group">
           <div class="form__group-title">
             <span class="form__label--item">性別</span>
-            <span class="form__label--required">必須</span>
+            <span class="form__label--required">※</span>
           </div>
-          <div class="form__group-content">
+          <div class="form__group-content {{ $errors->has('gender') ? 'has-error' : '' }}">
             <div class="form__input--radio">
               <label class="radio-label">
                 <input type="radio" name="gender" value="1" {{ old('gender', $oldData['gender'] ?? '') == '1' ? 'checked' : '' }} required />
@@ -76,9 +77,9 @@
         <div class="form__group">
           <div class="form__group-title">
             <span class="form__label--item">メールアドレス</span>
-            <span class="form__label--required">必須</span>
+            <span class="form__label--required">※</span>
           </div>
-          <div class="form__group-content">
+          <div class="form__group-content {{ $errors->has('email') ? 'has-error' : '' }}">
             <div class="form__input--text">
               <input type="email" name="email" value="{{ old('email', $oldData['email'] ?? '') }}" placeholder="例:test@example.com" required />
             </div>
@@ -92,9 +93,9 @@
         <div class="form__group">
           <div class="form__group-title">
             <span class="form__label--item">電話番号</span>
-            <span class="form__label--required">必須</span>
+            <span class="form__label--required">※</span>
           </div>
-          <div class="form__group-content">
+          <div class="form__group-content {{ $errors->has('tel1') || $errors->has('tel2') || $errors->has('tel3') ? 'has-error' : '' }}">
             <div class="form__input--text form__input--tel">
               <input type="tel" name="tel1" value="{{ old('tel1', $oldData['tel1'] ?? '') }}" placeholder="080" maxlength="5" required />
               <span>-</span>
@@ -103,24 +104,22 @@
               <input type="tel" name="tel3" value="{{ old('tel3', $oldData['tel3'] ?? '') }}" placeholder="5678" maxlength="5" required />
             </div>
             <div class="form__error">
-              @error('tel1')
-              {{ $message }}
-              @enderror
-              @error('tel2')
-              {{ $message }}
-              @enderror
-              @error('tel3')
-              {{ $message }}
-              @enderror
+              @if($errors->has('tel1'))
+              {{ $errors->first('tel1') }}
+              @elseif($errors->has('tel2'))
+              {{ $errors->first('tel2') }}
+              @elseif($errors->has('tel3'))
+              {{ $errors->first('tel3') }}
+              @endif
             </div>
           </div>
         </div>
         <div class="form__group">
           <div class="form__group-title">
             <span class="form__label--item">住所</span>
-            <span class="form__label--required">必須</span>
+            <span class="form__label--required">※</span>
           </div>
-          <div class="form__group-content">
+          <div class="form__group-content {{ $errors->has('address') ? 'has-error' : '' }}">
             <div class="form__input--text">
               <input type="text" name="address" value="{{ old('address', $oldData['address'] ?? '') }}" placeholder="例:東京都渋谷区千駄ヶ谷1-2-3" required />
             </div>
@@ -135,7 +134,7 @@
           <div class="form__group-title">
             <span class="form__label--item">建物名</span>
           </div>
-          <div class="form__group-content">
+          <div class="form__group-content {{ $errors->has('building') ? 'has-error' : '' }}">
             <div class="form__input--text">
               <input type="text" name="building" value="{{ old('building', $oldData['building'] ?? '') }}" placeholder="例:千駄ヶ谷マンション101" />
             </div>
@@ -149,12 +148,12 @@
         <div class="form__group">
           <div class="form__group-title">
             <span class="form__label--item">お問い合わせの種類</span>
-            <span class="form__label--required">必須</span>
+            <span class="form__label--required">※</span>
           </div>
-          <div class="form__group-content">
+          <div class="form__group-content {{ $errors->has('category_id') ? 'has-error' : '' }}">
             <div class="form__input--select">
               <select name="category_id" required>
-                <option value="">選択してください</option>
+                <option value=""><span>選択してください</span></option>
                 @foreach($categories as $category)
                 <option value="{{ $category->id }}" {{ old('category_id', $oldData['category_id'] ?? '') == $category->id ? 'selected' : '' }}>
                   {{ $category->content }}
@@ -172,9 +171,9 @@
         <div class="form__group">
           <div class="form__group-title">
             <span class="form__label--item">お問い合わせ内容</span>
-            <span class="form__label--required">必須</span>
+            <span class="form__label--required">※</span>
           </div>
-          <div class="form__group-content">
+          <div class="form__group-content {{ $errors->has('detail') ? 'has-error' : '' }}">
             <div class="form__input--textarea">
               <textarea name="detail" placeholder="お問い合わせ内容をご記載ください" maxlength="120" required>{{ old('detail', $oldData['detail'] ?? '') }}</textarea>
             </div>
