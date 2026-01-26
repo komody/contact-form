@@ -1,18 +1,25 @@
+body {
+  font-family: 'Inika', serif;
+}
+
 .header {
-  background: #000;
+  height: 100px;
+  border-bottom: 1px solid #e0dfde;
+  display: flex;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
 }
 
 .header__inner {
   margin: 0 auto;
-  padding: 20px 15px;
-  max-width: 1230px;
 }
 
 .header__logo {
-  color: #fff;
+  color: #8B7969;
   text-decoration: none;
-  font-weight: bold;
-  font-size: 24px;
+  font-weight: 400;
+  font-size: 40px;
 }
 
 .confirm__content {
@@ -21,14 +28,17 @@
   max-width: 1230px;
 }
 
-.confirm__heading {
+.confirm__title {
+  color: #8B7969;
+  font-weight: 400;
+  font-size: 35px;
   margin-bottom: 40px;
   text-align: center;
 }
 
 .form {
   margin: 0 auto;
-  width: 70%;
+  width: 972px;
 }
 
 .confirm-table {
@@ -39,21 +49,32 @@
   width: 100%;
 }
 
+.confirm-table__row {
+  height: 70px;
+}
+
 .confirm-table__header {
-  padding: 15px;
-  width: 20%;
-  border-bottom: 1px solid #ddd;
-  background-color: #eee;
+  font-size: 20px;
+  font-weight: 400;
+  text-align: left;
+  color: #fff;
+  padding: 15px 60px;
+  width: 305px;
+  border-bottom: 1px solid #e0dfde;
+  background-color: #baa899;
   font-weight: bold;
 }
 
 .confirm-table__text {
-  padding: 15px;
-  border-bottom: 1px solid #ddd;
+  font-size: 18px;
+  font-weight: 400;
+  padding: 15px 45px;
+  color: #8B7969;
+  border-bottom: 1px solid #e0dfde;
 }
 
 .confirm-table__text input {
-  width: 100%;
+  width: 665px;
   outline: none;
   border: none;
 }
@@ -61,6 +82,7 @@
 .confirm-table__row:last-child .confirm-table__header,
 .confirm-table__row:last-child .confirm-table__text {
   border-bottom-width: 0;
+  height: 116px;
 }
 
 .form__button {
@@ -69,12 +91,21 @@
 }
 
 .form__button-submit {
-  padding: 10px;
-  width: 30%;
-  height: 50px;
+  padding: 8px;
+  font-size: 20px;
+  font-weight: 400;
+  width: 120px;
+  height: 42px;
   border: none;
-  border-radius: 3px;
-  background: #000;
+  background: #82756A;
   color: #fff;
+  cursor: pointer;
+}
+
+.form__button-edit {
+  font-size: 20px;
+  font-weight: 400;
+  margin-left: 50px;
+  color: #8B7969;
   cursor: pointer;
 }
