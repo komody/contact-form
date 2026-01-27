@@ -30,9 +30,30 @@
     <div class="admin__content">
       <h1 class="admin__title">Admin</h1>
 
-      <!-- 検索・フィルターセクション（後で実装） -->
+      <!-- 検索・フィルターセクション -->
       <div class="admin__filters">
-        <!-- 検索フォームなど -->
+        <form method="GET" action="/admin" class="admin__search-form">
+          <div class="admin__search-row">
+            <input type="text" name="keyword" class="admin__search-input" placeholder="名前やメールアドレスを入力してください" value="{{ request('keyword') }}">
+            <select name="gender" class="admin__search-select">
+              <option value="">性別</option>
+              <option value="1" {{ request('gender') == '1' ? 'selected' : '' }}>男性</option>
+              <option value="2" {{ request('gender') == '2' ? 'selected' : '' }}>女性</option>
+              <option value="3" {{ request('gender') == '3' ? 'selected' : '' }}>その他</option>
+            </select>
+            <select name="category_id" class="admin__search-select">
+              <option value="">お問い合わせの種類</option>
+              @foreach($categories as $category)
+              <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                {{ $category->content }}
+              </option>
+              @endforeach
+            </select>
+            <input type="date" name="date" class="admin__search-date" value="{{ request('date') }}">
+            <button type="submit" class="admin__search-btn">検索</button>
+            <button type="button" class="admin__reset-btn" onclick="resetForm()">リセット</button>
+          </div>
+        </form>
       </div>
 
       <!-- エクスポート・ページネーション -->
@@ -189,6 +210,11 @@
         closeModal();
       }
     });
+
+    // リセットボタンの処理
+    function resetForm() {
+      window.location.href = '/admin';
+    }
   </script>
 </body>
 
