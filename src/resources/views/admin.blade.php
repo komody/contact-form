@@ -32,7 +32,7 @@
 
       <!-- 検索・フィルターセクション -->
       <div class="admin__filters">
-        <form method="GET" action="/admin" class="admin__search-form">
+        <form method="GET" action="/search" class="admin__search-form">
           <div class="admin__search-row">
             <input type="text" name="keyword" class="admin__search-input" placeholder="名前やメールアドレスを入力してください" value="{{ request('keyword') }}">
             <select name="gender" class="admin__search-select">
@@ -183,7 +183,7 @@
         document.getElementById('modal-detail').innerHTML = contact.detail.replace(/\n/g, '<br>');
         
         // 削除フォームのactionを設定
-        document.getElementById('deleteForm').action = `/admin/contacts/${contactId}`;
+        document.getElementById('deleteForm').action = `/delete/${contactId}`;
         
         document.getElementById('contactModal').classList.add('modal--open');
         document.body.style.overflow = 'hidden';
@@ -213,7 +213,7 @@
 
     // リセットボタンの処理
     function resetForm() {
-      window.location.href = '/admin';
+      window.location.href = '/reset';
     }
   </script>
 </body>

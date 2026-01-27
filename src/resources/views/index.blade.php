@@ -25,7 +25,7 @@
   <main>
     <div class="contact-form__content">
       <h2 class="contact-form__title">Contact</h2>
-      <form class="form" action="/contacts/confirm" method="post" novalidate>
+      <form class="form" action="/confirm" method="post" novalidate>
         @csrf
         <div class="form__group">
           <div class="form__group-title">

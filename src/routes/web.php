@@ -19,7 +19,7 @@ use App\Http\Controllers\AdminController;
 
 Route::get('/', [ContactController::class, 'index']);
 
-Route::post('/contacts/confirm', [ContactController::class, 'confirm']);
+Route::post('/confirm', [ContactController::class, 'confirm']);
 Route::post('/contacts', [ContactController::class, 'store']);
 Route::get('/thanks', function () {
     return view('thanks');
@@ -37,5 +37,7 @@ Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 // 管理画面（認証必須）
 Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
-    Route::delete('/admin/contacts/{id}', [AdminController::class, 'destroy'])->name('admin.contacts.destroy');
+    Route::get('/search', [AdminController::class, 'index'])->name('search');
+    Route::get('/reset', [AdminController::class, 'index'])->name('reset');
+    Route::delete('/delete/{id}', [AdminController::class, 'destroy'])->name('delete');
 });
