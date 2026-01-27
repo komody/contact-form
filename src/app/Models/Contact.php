@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Category;
 
 class Contact extends Model
 {
@@ -20,4 +21,25 @@ class Contact extends Model
         'building',
         'detail',
     ];
+
+    /**
+     * カテゴリーとのリレーション
+     */
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
+    /**
+     * 性別を文字列で取得
+     */
+    public function getGenderTextAttribute()
+    {
+        return match($this->gender) {
+            1 => '男性',
+            2 => '女性',
+            3 => 'その他',
+            default => '-',
+        };
+    }
 }
