@@ -250,7 +250,7 @@ img {
 */
 
 svg:not([fill]) {
-  fill: current-Color;
+  fill: currentColor;
 }
 
 /**
@@ -454,7 +454,7 @@ textarea {
 */
 
 :-moz-focusring {
-  outline: 1px dotted Button-Text;
+  outline: 1px dotted ButtonText;
 }
 
 /**

@@ -30,7 +30,7 @@
     <div class="admin-content">
       <h1 class="admin-title">Admin</h1>
 
-      <!- 検索・フィルターセクション ->
+      <!-- 検索・フィルターセクション -->
       <div class="admin-filters">
         <form method="GET" action="/search" class="admin-search-form">
           <div class="admin-search-row">
@@ -56,7 +56,7 @@
         </form>
       </div>
 
-      <!- エクスポート・ページネーション ->
+      <!-- エクスポート・ページネーション -->
       <div class="admin-actions">
         <button class="admin-export">エクスポート</button>
         <div class="admin-pagination">
@@ -64,7 +64,7 @@
         </div>
       </div>
 
-      <!- お問い合わせ一覧テーブル ->
+      <!-- お問い合わせ一覧テーブル -->
       <div class="admin-table-wrapper">
         <table class="admin-table">
           <thead>
@@ -84,7 +84,7 @@
               <td>{{ $contact->email }}</td>
               <td>{{ $contact->category->content }}</td>
               <td>
-                <button class="admin-detail-btn" data-contact-id="{{ $contact->id }}" onclick="openModal({{ $contact->id }})">詳細</button>
+                <button class="admin-detail-btn" data-contact-id="{{ $contact->id }}" onclick="openModal('{{ $contact->id }}')">詳細</button>
               </td>
             </tr>
             @empty
@@ -98,7 +98,7 @@
     </div>
   </main>
 
-  <!- モーダル ->
+  <!-- モーダル -->
   <div id="contactModal" class="modal">
     <div class="modal-overlay" onclick="closeModal()"></div>
     <div class="modal-content">
@@ -148,74 +148,28 @@
     </div>
   </div>
 
-  <script>
-    // お問い合わせデータをJavaScriptで使用可能にする
-    const contactsData = {
-      @foreach($contacts as $contact)
-      {{ $contact->id }}: {
-        name: @json($contact->last_name . ' ' . $contact->first_name),
-        gender: @json($contact->gender_text),
-        email: @json($contact->email),
-        tel: @json($contact->tel),
-        address: @json($contact->address),
-        building: @json($contact->building ?? ''),
-        category: @json($contact->category->content),
-        detail: @json($contact->detail)
-      },
-      @endforeach
-    };
-
-    let currentContactId = null;
-
-    function openModal(contactId) {
-      currentContactId = contactId;
-      const contact = contactsData[contactId];
-      
-      if (contact) {
-        document.getElementById('modal-name').textContent = contact.name;
-        document.getElementById('modal-gender').textContent = contact.gender;
-        document.getElementById('modal-email').textContent = contact.email;
-        document.getElementById('modal-tel').textContent = contact.tel;
-        document.getElementById('modal-address').textContent = contact.address;
-        document.getElementById('modal-building').textContent = contact.building || '';
-        document.getElementById('modal-category').textContent = contact.category;
-        // 改行を<br>タグに変換
-        document.getElementById('modal-detail').innerHTML = contact.detail.replace(/\n/g, '<br>');
-        
-        // 削除フォームのactionを設定
-        document.getElementById('deleteForm').action = `/delete/${contactId}`;
-        
-        document.getElementById('contactModal').classList.add('modal-open');
-        document.body.style.overflow = 'hidden';
-      }
-    }
-
-    function closeModal() {
-      document.getElementById('contactModal').classList.remove('modal-open');
-      document.body.style.overflow = '';
-      currentContactId = null;
-    }
-
-    function deleteContact() {
-      if (!currentContactId) return;
-      
-      if (confirm('このお問い合わせを削除してもよろしいですか？')) {
-        document.getElementById('deleteForm').submit();
-      }
-    }
-
-    // ESCキーでモーダルを閉じる
-    document.addEventListener('keydown', function(e) {
-      if (e.key === 'Escape') {
-        closeModal();
-      }
+  @php
+    $contactsData = $contacts->keyBy('id')->map(function($contact) {
+      return [
+        'name' => $contact->last_name . ' ' . $contact->first_name,
+        'gender' => $contact->gender_text,
+        'email' => $contact->email,
+        'tel' => $contact->tel,
+        'address' => $contact->address,
+        'building' => $contact->building ?? '',
+        'category' => $contact->category->content,
+        'detail' => $contact->detail,
+      ];
     });
-
-    // リセットボタンの処理
-    function resetForm() {
-      window.location.href = '/reset';
-    }
+    $contactsJson = json_encode($contactsData, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT);
+  @endphp
+  <div id="contacts-data" data-contacts="{!! htmlspecialchars($contactsJson, ENT_QUOTES, 'UTF-8') !!}" style="display: none;"></div>
+  <script>
+    // BladeテンプレートからJavaScriptにデータを渡す
+    const contactsDataElement = document.getElementById('contacts-data');
+    window.contactsData = JSON.parse(contactsDataElement.getAttribute('data-contacts'));
   </script>
+  <script src="{{ asset('js/index.js') }}"></script>
 </body>
 
 </html>
