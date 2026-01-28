@@ -15,10 +15,10 @@
 
 <body>
   <main>
-    <div class="thanks__content">
-      <p class="thanks__heading">お問い合わせありがとうございました</p>
-      <div class="thanks__button">
-        <a href="/" class="thanks__button-home">HOME</a>
+    <div class="thanks-content">
+      <p class="thanks-heading">お問い合わせありがとうございました</p>
+      <div class="thanks-button">
+        <a href="/" class="thanks-button-home">HOME</a>
       </div>
     </div>
     <div class="bg-text">Thank you</div>

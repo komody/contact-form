@@ -15,33 +15,33 @@
 
 <body>
   <header class="header">
-    <div class="header__inner">
-      <a class="header__logo" href="/">
+    <div class="header-inner">
+      <a class="header-logo" href="/">
         FashionablyLate
       </a>
-      <form action="/logout" method="post" class="header__logout-form">
+      <form action="/logout" method="post" class="header-logout-form">
         @csrf
-        <button type="submit" class="header__logout">logout</button>
+        <button type="submit" class="header-logout">logout</button>
       </form>
     </div>
   </header>
 
   <main>
-    <div class="admin__content">
-      <h1 class="admin__title">Admin</h1>
+    <div class="admin-content">
+      <h1 class="admin-title">Admin</h1>
 
-      <!-- 検索・フィルターセクション -->
-      <div class="admin__filters">
-        <form method="GET" action="/search" class="admin__search-form">
-          <div class="admin__search-row">
-            <input type="text" name="keyword" class="admin__search-input" placeholder="名前やメールアドレスを入力してください" value="{{ request('keyword') }}">
-            <select name="gender" class="admin__search-select">
+      <!- 検索・フィルターセクション ->
+      <div class="admin-filters">
+        <form method="GET" action="/search" class="admin-search-form">
+          <div class="admin-search-row">
+            <input type="text" name="keyword" class="admin-search-input" placeholder="名前やメールアドレスを入力してください" value="{{ request('keyword') }}">
+            <select name="gender" class="admin-search-select">
               <option value="">性別</option>
               <option value="1" {{ request('gender') == '1' ? 'selected' : '' }}>男性</option>
               <option value="2" {{ request('gender') == '2' ? 'selected' : '' }}>女性</option>
               <option value="3" {{ request('gender') == '3' ? 'selected' : '' }}>その他</option>
             </select>
-            <select name="category_id" class="admin__search-select">
+            <select name="category_id" class="admin-search-select">
               <option value="">お問い合わせの種類</option>
               @foreach($categories as $category)
               <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
@@ -49,24 +49,24 @@
               </option>
               @endforeach
             </select>
-            <input type="date" name="date" class="admin__search-date" value="{{ request('date') }}">
-            <button type="submit" class="admin__search-btn">検索</button>
-            <button type="button" class="admin__reset-btn" onclick="resetForm()">リセット</button>
+            <input type="date" name="date" class="admin-search-date" value="{{ request('date') }}">
+            <button type="submit" class="admin-search-btn">検索</button>
+            <button type="button" class="admin-reset-btn" onclick="resetForm()">リセット</button>
           </div>
         </form>
       </div>
 
-      <!-- エクスポート・ページネーション -->
-      <div class="admin__actions">
-        <button class="admin__export">エクスポート</button>
-        <div class="admin__pagination">
+      <!- エクスポート・ページネーション ->
+      <div class="admin-actions">
+        <button class="admin-export">エクスポート</button>
+        <div class="admin-pagination">
           {{ $contacts->links() }}
         </div>
       </div>
 
-      <!-- お問い合わせ一覧テーブル -->
-      <div class="admin__table-wrapper">
-        <table class="admin__table">
+      <!- お問い合わせ一覧テーブル ->
+      <div class="admin-table-wrapper">
+        <table class="admin-table">
           <thead>
             <tr>
               <th>お名前</th>
@@ -84,12 +84,12 @@
               <td>{{ $contact->email }}</td>
               <td>{{ $contact->category->content }}</td>
               <td>
-                <button class="admin__detail-btn" data-contact-id="{{ $contact->id }}" onclick="openModal({{ $contact->id }})">詳細</button>
+                <button class="admin-detail-btn" data-contact-id="{{ $contact->id }}" onclick="openModal({{ $contact->id }})">詳細</button>
               </td>
             </tr>
             @empty
             <tr>
-              <td colspan="5" class="admin__no-data">お問い合わせがありません</td>
+              <td colspan="5" class="admin-no-data">お問い合わせがありません</td>
             </tr>
             @endforelse
           </tbody>
@@ -98,52 +98,52 @@
     </div>
   </main>
 
-  <!-- モーダル -->
+  <!- モーダル ->
   <div id="contactModal" class="modal">
-    <div class="modal__overlay" onclick="closeModal()"></div>
-    <div class="modal__content">
-      <button class="modal__close" onclick="closeModal()">×</button>
-      <h2 class="modal__title">お名前</h2>
-      <div class="modal__body">
-        <div class="modal__row">
-          <span class="modal__label">お名前</span>
-          <span class="modal__value" id="modal-name"></span>
+    <div class="modal-overlay" onclick="closeModal()"></div>
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeModal()">×</button>
+      <h2 class="modal-title">お名前</h2>
+      <div class="modal-body">
+        <div class="modal-row">
+          <span class="modal-label">お名前</span>
+          <span class="modal-value" id="modal-name"></span>
         </div>
-        <div class="modal__row">
-          <span class="modal__label">性別</span>
-          <span class="modal__value" id="modal-gender"></span>
+        <div class="modal-row">
+          <span class="modal-label">性別</span>
+          <span class="modal-value" id="modal-gender"></span>
         </div>
-        <div class="modal__row">
-          <span class="modal__label">メールアドレス</span>
-          <span class="modal__value" id="modal-email"></span>
+        <div class="modal-row">
+          <span class="modal-label">メールアドレス</span>
+          <span class="modal-value" id="modal-email"></span>
         </div>
-        <div class="modal__row">
-          <span class="modal__label">電話番号</span>
-          <span class="modal__value" id="modal-tel"></span>
+        <div class="modal-row">
+          <span class="modal-label">電話番号</span>
+          <span class="modal-value" id="modal-tel"></span>
         </div>
-        <div class="modal__row">
-          <span class="modal__label">住所</span>
-          <span class="modal__value" id="modal-address"></span>
+        <div class="modal-row">
+          <span class="modal-label">住所</span>
+          <span class="modal-value" id="modal-address"></span>
         </div>
-        <div class="modal__row">
-          <span class="modal__label">建物名</span>
-          <span class="modal__value" id="modal-building"></span>
+        <div class="modal-row">
+          <span class="modal-label">建物名</span>
+          <span class="modal-value" id="modal-building"></span>
         </div>
-        <div class="modal__row">
-          <span class="modal__label">お問い合わせの種類</span>
-          <span class="modal__value" id="modal-category"></span>
+        <div class="modal-row">
+          <span class="modal-label">お問い合わせの種類</span>
+          <span class="modal-value" id="modal-category"></span>
         </div>
-        <div class="modal__row">
-          <span class="modal__label">お問い合わせ内容</span>
-          <span class="modal__value" id="modal-detail"></span>
+        <div class="modal-row">
+          <span class="modal-label">お問い合わせ内容</span>
+          <span class="modal-value" id="modal-detail"></span>
         </div>
       </div>
       <form id="deleteForm" method="POST" style="display: none;">
         @csrf
         @method('DELETE')
       </form>
-      <div class="modal__footer">
-        <button class="modal__delete-btn" onclick="deleteContact()">削除</button>
+      <div class="modal-footer">
+        <button class="modal-delete-btn" onclick="deleteContact()">削除</button>
       </div>
     </div>
   </div>
@@ -185,13 +185,13 @@
         // 削除フォームのactionを設定
         document.getElementById('deleteForm').action = `/delete/${contactId}`;
         
-        document.getElementById('contactModal').classList.add('modal--open');
+        document.getElementById('contactModal').classList.add('modal-open');
         document.body.style.overflow = 'hidden';
       }
     }
 
     function closeModal() {
-      document.getElementById('contactModal').classList.remove('modal--open');
+      document.getElementById('contactModal').classList.remove('modal-open');
       document.body.style.overflow = '';
       currentContactId = null;
     }

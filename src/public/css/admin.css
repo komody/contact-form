@@ -10,7 +10,7 @@ body {
   justify-content: center;
 }
 
-.header__inner {
+.header-inner {
   width: 100%;
   max-width: 1230px;
   display: flex;
@@ -19,18 +19,18 @@ body {
   padding: 0 20px;
 }
 
-.header__logo {
+.header-logo {
   color: #8B7969;
   text-decoration: none;
   font-weight: 400;
   font-size: 40px;
 }
 
-.header__logout-form {
+.header-logout-form {
   margin: 0;
 }
 
-.header__logout {
+.header-logout {
   background: none;
   border: none;
   color: #8B7969;
@@ -40,13 +40,13 @@ body {
   padding: 0;
 }
 
-.admin__content {
+.admin-content {
   margin: 0 auto;
   max-width: 1230px;
   padding: 40px 20px;
 }
 
-.admin__title {
+.admin-title {
   color: #8B7969;
   font-weight: 400;
   font-size: 35px;
@@ -54,15 +54,15 @@ body {
   margin-bottom: 40px;
 }
 
-.admin__filters {
+.admin-filters {
   margin-bottom: 30px;
 }
 
-.admin__search-form {
+.admin-search-form {
   width: 100%;
 }
 
-.admin__search-row {
+.admin-search-row {
   display: flex;
   gap: 10px;
   align-items: center;
@@ -70,7 +70,7 @@ body {
   margin-bottom: 20px;
 }
 
-.admin__search-input {
+.admin-search-input {
   flex: 1;
   min-width: 200px;
   padding: 8px 12px;
@@ -81,11 +81,11 @@ body {
   color: #8B7969;
 }
 
-.admin__search-input::placeholder {
+.admin-search-input::placeholder {
   color: #999;
 }
 
-.admin__search-select {
+.admin-search-select {
   padding: 8px 12px;
   border: 1px solid #e0dfde;
   border-radius: 3px;
@@ -97,7 +97,7 @@ body {
   min-width: 150px;
 }
 
-.admin__search-date {
+.admin-search-date {
   padding: 8px 12px;
   border: 1px solid #e0dfde;
   border-radius: 3px;
@@ -107,7 +107,7 @@ body {
   min-width: 150px;
 }
 
-.admin__search-btn {
+.admin-search-btn {
   padding: 8px 20px;
   background: #8B7969;
   color: #fff;
@@ -118,11 +118,11 @@ body {
   font-size: 14px;
 }
 
-.admin__search-btn:hover {
+.admin-search-btn:hover {
   background: #7a6a5a;
 }
 
-.admin__reset-btn {
+.admin-reset-btn {
   padding: 8px 20px;
   background: #f4f4f4;
   color: #8B7969;
@@ -133,18 +133,18 @@ body {
   font-size: 14px;
 }
 
-.admin__reset-btn:hover {
+.admin-reset-btn:hover {
   background: #e8e8e8;
 }
 
-.admin__actions {
+.admin-actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
   margin-bottom: 20px;
 }
 
-.admin__export {
+.admin-export {
   padding: 8px 16px;
   background: #f4f4f4;
   color: #8B7969;
@@ -155,28 +155,28 @@ body {
   font-size: 14px;
 }
 
-.admin__table-wrapper {
+.admin-table-wrapper {
   overflow-x: auto;
 }
 
-.admin__table {
+.admin-table {
   width: 100%;
   border-collapse: collapse;
 }
 
-.admin__table thead {
+.admin-table thead {
   background: #8B7969;
   color: #fff;
 }
 
-.admin__table th {
+.admin-table th {
   padding: 15px;
   text-align: left;
   font-weight: 400;
   font-size: 16px;
 }
 
-.admin__table td {
+.admin-table td {
   padding: 15px;
   border-bottom: 1px solid #e0dfde;
   background: #fff;
@@ -184,20 +184,20 @@ body {
   font-size: 14px;
 }
 
-.admin__table tbody tr {
+.admin-table tbody tr {
   transition: background-color 0.2s ease;
 }
 
-.admin__table tbody tr:hover {
+.admin-table tbody tr:hover {
   background: #f4f4f4;
   cursor: pointer;
 }
 
-.admin__table tbody tr:hover td {
+.admin-table tbody tr:hover td {
   background: #f4f4f4;
 }
 
-.admin__detail-btn {
+.admin-detail-btn {
   padding: 6px 12px;
   background: #f4f4f4;
   color: #8B7969;
@@ -208,18 +208,18 @@ body {
   font-size: 14px;
 }
 
-.admin__no-data {
+.admin-no-data {
   text-align: center;
   padding: 40px;
   color: #8B7969;
 }
 
-.admin__pagination {
+.admin-pagination {
   display: flex;
   align-items: center;
 }
 
-.admin__pagination .pagination {
+.admin-pagination .pagination {
   display: flex;
   list-style: none;
   padding: 0;
@@ -227,12 +227,12 @@ body {
   gap: 8px;
 }
 
-.admin__pagination .pagination li {
+.admin-pagination .pagination li {
   display: inline-block;
 }
 
-.admin__pagination .pagination a,
-.admin__pagination .pagination span {
+.admin-pagination .pagination a,
+.admin-pagination .pagination span {
   display: inline-block;
   padding: 8px 12px;
   color: #8B7969;
@@ -241,13 +241,13 @@ body {
   border-radius: 3px;
 }
 
-.admin__pagination .pagination .active span {
+.admin-pagination .pagination .active span {
   background: #8B7969;
   color: #fff;
   border-color: #8B7969;
 }
 
-.admin__pagination .pagination a:hover {
+.admin-pagination .pagination a:hover {
   background: #f4f4f4;
 }
 
@@ -262,13 +262,13 @@ body {
   z-index: 1000;
 }
 
-.modal--open {
+.modal-open {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.modal__overlay {
+.modal-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -278,7 +278,7 @@ body {
   cursor: pointer;
 }
 
-.modal__content {
+.modal-content {
   position: relative;
   background: #fff;
   border-radius: 4px;
@@ -290,7 +290,7 @@ body {
   z-index: 1001;
 }
 
-.modal__close {
+.modal-close {
   position: absolute;
   top: 15px;
   right: 15px;
@@ -308,11 +308,11 @@ body {
   justify-content: center;
 }
 
-.modal__close:hover {
+.modal-close:hover {
   opacity: 0.7;
 }
 
-.modal__title {
+.modal-title {
   color: #8B7969;
   font-weight: 400;
   font-size: 24px;
@@ -320,21 +320,21 @@ body {
   padding-right: 40px;
 }
 
-.modal__body {
+.modal-body {
   margin-bottom: 30px;
 }
 
-.modal__row {
+.modal-row {
   display: flex;
   margin-bottom: 20px;
   align-items: flex-start;
 }
 
-.modal__row:last-child {
+.modal-row:last-child {
   margin-bottom: 0;
 }
 
-.modal__label {
+.modal-label {
   min-width: 150px;
   color: #8B7969;
   font-weight: 400;
@@ -342,20 +342,20 @@ body {
   padding-right: 20px;
 }
 
-.modal__value {
+.modal-value {
   flex: 1;
   color: #8B7969;
   font-size: 16px;
   word-break: break-word;
 }
 
-.modal__footer {
+.modal-footer {
   text-align: center;
   padding-top: 20px;
   border-top: 1px solid #e0dfde;
 }
 
-.modal__delete-btn {
+.modal-delete-btn {
   padding: 10px 30px;
   background: #D32F2F;
   color: #fff;
@@ -366,6 +366,6 @@ body {
   font-size: 16px;
 }
 
-.modal__delete-btn:hover {
+.modal-delete-btn:hover {
   background: #B71C1C;
 }
