@@ -15,29 +15,29 @@
 
 <body>
   <header class="header">
-    <div class="header__inner">
-      <a class="header__logo" href="/">
+    <div class="header-inner">
+      <a class="header-logo" href="/">
         FashionablyLate
       </a>
     </div>
   </header>
 
   <main>
-    <div class="confirm__content">
-        <h2 class="confirm__title">Confirm</h2>
+    <div class="confirm-content">
+      <h2 class="confirm-title">Confirm</h2>
       <form class="form" action="/contacts" method="post">
         @csrf
         <div class="confirm-table">
-          <table class="confirm-table__inner">
-            <tr class="confirm-table__row">
-              <th class="confirm-table__header">お名前</th>
-              <td class="confirm-table__text">
+          <table class="confirm-table-inner">
+            <tr class="confirm-table-row">
+              <th class="confirm-table-header">お名前</th>
+              <td class="confirm-table-text">
                 {{ $contact['first_name'] }} {{ $contact['last_name'] }}
               </td>
             </tr>
-            <tr class="confirm-table__row">
-              <th class="confirm-table__header">性別</th>
-              <td class="confirm-table__text">
+            <tr class="confirm-table-row">
+              <th class="confirm-table-header">性別</th>
+              <td class="confirm-table-text">
                 @if($contact['gender'] == 1)
                 男性
                 @elseif($contact['gender'] == 2)
@@ -47,47 +47,47 @@
                 @endif
               </td>
             </tr>
-            <tr class="confirm-table__row">
-              <th class="confirm-table__header">メールアドレス</th>
-              <td class="confirm-table__text">
+            <tr class="confirm-table-row">
+              <th class="confirm-table-header">メールアドレス</th>
+              <td class="confirm-table-text">
                 {{ $contact['email'] }}
               </td>
             </tr>
-            <tr class="confirm-table__row">
-              <th class="confirm-table__header">電話番号</th>
-              <td class="confirm-table__text">
+            <tr class="confirm-table-row">
+              <th class="confirm-table-header">電話番号</th>
+              <td class="confirm-table-text">
                 {{ $contact['tel'] }}
               </td>
             </tr>
-            <tr class="confirm-table__row">
-              <th class="confirm-table__header">住所</th>
-              <td class="confirm-table__text">
+            <tr class="confirm-table-row">
+              <th class="confirm-table-header">住所</th>
+              <td class="confirm-table-text">
                 {{ $contact['address'] }}
               </td>
             </tr>
-            <tr class="confirm-table__row">
-              <th class="confirm-table__header">建物名</th>
-              <td class="confirm-table__text">
+            <tr class="confirm-table-row">
+              <th class="confirm-table-header">建物名</th>
+              <td class="confirm-table-text">
                 {{ $contact['building'] ?? '' }}
               </td>
             </tr>
-            <tr class="confirm-table__row">
-              <th class="confirm-table__header">お問い合わせの種類</th>
-              <td class="confirm-table__text">
+            <tr class="confirm-table-row">
+              <th class="confirm-table-header">お問い合わせの種類</th>
+              <td class="confirm-table-text">
                 {{ $category->content }}
               </td>
             </tr>
-            <tr class="confirm-table__row">
-              <th class="confirm-table__header">お問い合わせ内容</th>
-              <td class="confirm-table__text">
+            <tr class="confirm-table-row">
+              <th class="confirm-table-header">お問い合わせ内容</th>
+              <td class="confirm-table-text">
                 {{ $contact['detail'] }}
               </td>
             </tr>
           </table>
         </div>
-        <div class="form__button">
-          <button class="form__button-submit" type="submit">送信</button>
-          <a href="/" class="form__button-edit">修正</a>
+        <div class="form-button">
+          <button class="form-button-submit" type="submit">送信</button>
+          <a href="/" class="form-button-edit">修正</a>
         </div>
       </form>
     </div>

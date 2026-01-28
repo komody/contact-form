@@ -2,7 +2,7 @@ body {
   font-family: 'Inika', serif;
 }
 
-.thanks__content {
+.thanks-content {
   margin: 0 auto;
   padding: 30px 15px;
   max-width: 1230px;
@@ -13,7 +13,7 @@ body {
   z-index: 1;
 }
 
-.thanks__heading {
+.thanks-heading {
   margin-bottom: 40px;
   font-size: 30px;
   font-weight: 700;
@@ -21,12 +21,12 @@ body {
   text-align: center;
 }
 
-.thanks__button {
+.thanks-button {
   margin-top: 40px;
   text-align: center;
 }
 
-.thanks__button-home {
+.thanks-button-home {
   display: inline-block;
   padding: 8px;
   font-size: 20px;

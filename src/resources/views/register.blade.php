@@ -13,58 +13,50 @@
   <link rel="stylesheet" href="{{ asset('css/register.css') }}" />
 </head>
 
-<body>
+<body class="register-body">
   <header class="header">
-    <div class="header__inner">
-      <a class="header__logo" href="/">
+    <div class="header-inner">
+      <a class="header-logo" href="/">
         FashionablyLate
       </a>
-      <a class="header__link" href="/login">login</a>
+      <a class="header-login-link" href="/login">login</a>
     </div>
   </header>
 
   <main>
-    <div class="auth-form__content">
-      <div class="auth-form__heading">
-        <h2>Register</h2>
-      </div>
+    <div class="auth-form-content">
+      <h2 class="auth-form-heading">Register</h2>
       <form class="auth-form" action="/register" method="post">
         @csrf
-        <div class="auth-form__group">
-          <label class="auth-form__label">お名前</label>
-          <div class="auth-form__input">
-            <input type="text" name="name" value="{{ old('name') }}" placeholder="例:山田 太郎" required />
+        <div class="auth-form-group">
+          <label class="auth-form-label">お名前</label>
+          <div class="auth-form-input">
+            <input class="auth-form-input-field" type="text" name="name" value="{{ old('name') }}" placeholder="例:山田 太郎" required />
           </div>
           @error('name')
-          <div class="auth-form__error">{{ $message }}</div>
+          <div class="auth-form-error">{{ $message }}</div>
           @enderror
         </div>
-        <div class="auth-form__group">
-          <label class="auth-form__label">メールアドレス</label>
-          <div class="auth-form__input">
-            <input type="email" name="email" value="{{ old('email') }}" placeholder="例:test@example.com" required />
+        <div class="auth-form-group">
+          <label class="auth-form-label">メールアドレス</label>
+          <div class="auth-form-input">
+            <input class="auth-form-input-field" type="email" name="email" value="{{ old('email') }}" placeholder="例:test@example.com" required />
           </div>
           @error('email')
-          <div class="auth-form__error">{{ $message }}</div>
+          <div class="auth-form-error">{{ $message }}</div>
           @enderror
         </div>
-        <div class="auth-form__group">
-          <label class="auth-form__label">パスワード</label>
-          <div class="auth-form__input">
-            <input type="password" name="password" placeholder="例:coachtech106" required />
+        <div class="auth-form-group">
+          <label class="auth-form-label">パスワード</label>
+          <div class="auth-form-input">
+            <input class="auth-form-input-field" type="password" name="password" placeholder="例:coachtech106" required />
           </div>
           @error('password')
-          <div class="auth-form__error">{{ $message }}</div>
+          <div class="auth-form-error">{{ $message }}</div>
           @enderror
         </div>
-        <div class="auth-form__group">
-          <label class="auth-form__label">パスワード確認</label>
-          <div class="auth-form__input">
-            <input type="password" name="password_confirmation" placeholder="パスワードを再入力" required />
-          </div>
-        </div>
-        <div class="auth-form__button">
-          <button class="auth-form__button-submit" type="submit">登録</button>
+        <div class="auth-form-button">
+          <button class="auth-form-button-submit" type="submit">登録</button>
         </div>
       </form>
     </div>

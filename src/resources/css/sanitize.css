@@ -28,9 +28,9 @@
 * 1. Use the default cursor in all browsers (opinionated).
 * 2. Change the line height in all browsers (opinionated).
 * 3. Use a 4-space tab width in all browsers (opinionated).
-* 4. Remove the grey highlight on links in iOS (opinionated).
+* 4. Remove the grey highlight on links in i-OS (opinionated).
 * 5. Prevent adjustments of font size after orientation changes in
-*    IE on Windows Phone and in iOS.
+*    IE on Windows Phone and in i-OS.
 * 6. Breaks words to prevent overflow in all browsers (opinionated).
 */
 
@@ -221,7 +221,7 @@ video {
 }
 
 /**
-* Add the correct display in iOS 4-7.
+* Add the correct display in i-OS 4-7.
 */
 
 audio:not([controls]) {
@@ -298,7 +298,7 @@ button {
 }
 
 /**
-* Correct the inability to style buttons in iOS and Safari.
+* Correct the inability to style buttons in i-OS and Safari.
 */
 
 button,
@@ -420,7 +420,7 @@ textarea {
 }
 
 /**
-* Remove the inner padding in Chrome, Edge, and Safari on macOS.
+* Remove the inner padding in Chrome, Edge, and Safari on mac-OS.
 */
 
 ::-webkit-search-decoration {
@@ -428,7 +428,7 @@ textarea {
 }
 
 /**
-* 1. Correct the inability to style upload buttons in iOS and Safari.
+* 1. Correct the inability to style upload buttons in i-OS and Safari.
 * 2. Change font properties to `inherit` in Safari.
 */
 

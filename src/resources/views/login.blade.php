@@ -13,43 +13,41 @@
   <link rel="stylesheet" href="{{ asset('css/login.css') }}" />
 </head>
 
-<body>
+<body class="login-body">
   <header class="header">
-    <div class="header__inner">
-      <a class="header__logo" href="/">
+    <div class="header-inner">
+      <a class="header-logo" href="/">
         FashionablyLate
       </a>
-      <a class="header__link" href="/register">register</a>
+      <a class="header-register-link" href="/register">register</a>
     </div>
   </header>
 
   <main>
-    <div class="auth-form__content">
-      <div class="auth-form__heading">
-        <h2>Login</h2>
-      </div>
+    <div class="auth-form-content">
+      <h2 class="auth-form-heading">Login</h2>
       <form class="auth-form" action="/login" method="post">
         @csrf
-        <div class="auth-form__group">
-          <label class="auth-form__label">メールアドレス</label>
-          <div class="auth-form__input">
-            <input type="email" name="email" value="{{ old('email') }}" placeholder="例:test@example.com" required />
+        <div class="auth-form-group">
+          <label class="auth-form-label">メールアドレス</label>
+          <div class="auth-form-input">
+            <input class="auth-form-input-field" type="email" name="email" value="{{ old('email') }}" placeholder="例: test@example.com" required />
           </div>
           @error('email')
-          <div class="auth-form__error">{{ $message }}</div>
+          <div class="auth-form-error">{{ $message }}</div>
           @enderror
         </div>
-        <div class="auth-form__group">
-          <label class="auth-form__label">パスワード</label>
-          <div class="auth-form__input">
-            <input type="password" name="password" placeholder="例:coachnechnos" required />
+        <div class="auth-form-group">
+          <label class="auth-form-label">パスワード</label>
+          <div class="auth-form-input">
+            <input class="auth-form-input-field" type="password" name="password" placeholder="例: coachtech1106" required />
           </div>
           @error('password')
-          <div class="auth-form__error">{{ $message }}</div>
+          <div class="auth-form-error">{{ $message }}</div>
           @enderror
         </div>
-        <div class="auth-form__button">
-          <button class="auth-form__button-submit" type="submit">ログイン</button>
+        <div class="auth-form-button">
+          <button class="auth-form-button-submit" type="submit">ログイン</button>
         </div>
       </form>
     </div>
