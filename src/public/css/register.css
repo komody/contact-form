@@ -67,6 +67,7 @@
   width: 736px;
   height: 644px;
   border-radius: 10px;
+  border: 1px solid #c5b9b0;
   padding: 75px 145px 170px;
 }
 
@@ -86,9 +87,9 @@
   width: 100%;
 }
 
-.auth-form-input input {
+.auth-form-input-field {
   width: 100%;
-  height: 38px;
+  height: 55px;
   padding-left: 33px;
   font-size: 14px;
   font-weight: 400;
@@ -98,11 +99,11 @@
   box-sizing: border-box;
 }
 
-.auth-form-input input:focus {
+.auth-form-input-field:focus {
   outline: none;
 }
 
-.auth-form-input input::placeholder {
+.auth-form-input-field::placeholder {
   color: #BEB1A6;
 }
 
@@ -114,7 +115,7 @@
 }
 
 .auth-form-button {
-  margin-top: 32px;
+  margin-top: 60px;
   text-align: center;
 }
 
