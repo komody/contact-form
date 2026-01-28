@@ -39,5 +39,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminController::class, 'index'])->name('admin');
     Route::get('/search', [AdminController::class, 'index'])->name('search');
     Route::get('/reset', [AdminController::class, 'index'])->name('reset');
+    Route::get('/export', [AdminController::class, 'export'])->name('export');
     Route::delete('/delete/{id}', [AdminController::class, 'destroy'])->name('delete');
 });
