@@ -153,6 +153,8 @@ body {
   cursor: pointer;
   font-family: 'Inika', serif;
   font-size: 14px;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .admin-table-wrapper {

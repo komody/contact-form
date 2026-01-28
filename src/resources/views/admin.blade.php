@@ -58,7 +58,7 @@
 
       <!-- エクスポート・ページネーション -->
       <div class="admin-actions">
-        <button class="admin-export">エクスポート</button>
+        <a href="/export?{{ http_build_query(request()->query()) }}" class="admin-export">エクスポート</a>
         <div class="admin-pagination">
           {{ $contacts->links() }}
         </div>

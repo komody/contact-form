@@ -56,4 +56,71 @@ class AdminController extends Controller
 
     return redirect('/admin')->with('success', 'お問い合わせを削除しました');
   }
+
+  public function export(Request $request)
+  {
+    $query = Contact::with('category');
+
+    // 検索条件を適用（indexメソッドと同じロジック）
+    if ($request->filled('keyword')) {
+      $keyword = $request->input('keyword');
+      $query->where(function ($q) use ($keyword) {
+        $q->where('first_name', 'like', "%{$keyword}%")
+          ->orWhere('last_name', 'like', "%{$keyword}%")
+          ->orWhere('email', 'like', "%{$keyword}%");
+      });
+    }
+
+    if ($request->filled('gender')) {
+      $query->where('gender', $request->input('gender'));
+    }
+
+    if ($request->filled('category_id')) {
+      $query->where('category_id', $request->input('category_id'));
+    }
+
+    if ($request->filled('date')) {
+      $date = $request->input('date');
+      $query->whereDate('created_at', $date);
+    }
+
+    // 検索条件に一致する全件を取得
+    $contacts = $query->orderBy('created_at', 'desc')->get();
+
+    // ファイル名を生成（contacts_YYYYMMDD_HHMMSS.csv）
+    $filename = 'contacts_' . now()->format('Ymd_His') . '.csv';
+
+    // レスポンスヘッダーを設定
+    $headers = [
+      'Content-Type' => 'text/csv',
+      'Content-Disposition' => 'attachment; filename="' . $filename . '"',
+      'Pragma' => 'no-cache',
+      'Cache-Control' => 'must-revalidate, post-check=0, pre-check=0',
+      'Expires' => '0',
+    ];
+
+    // CSVをストリーム出力
+    $callback = function () use ($contacts) {
+      $file = fopen('php://output', 'w');
+      // UTF-8 BOMを追加（Excel互換性のため）
+      fprintf($file, chr(0xEF) . chr(0xBB) . chr(0xBF));
+
+      // CSVヘッダー
+      fputcsv($file, ['お名前', '性別', 'メールアドレス', 'お問い合わせの種類']);
+
+      // データ行
+      foreach ($contacts as $contact) {
+        fputcsv($file, [
+          $contact->last_name . ' ' . $contact->first_name,
+          $contact->gender_text,
+          $contact->email,
+          $contact->category->content,
+        ]);
+      }
+
+      fclose($file);
+    };
+
+    return response()->stream($callback, 200, $headers);
+  }
 }
