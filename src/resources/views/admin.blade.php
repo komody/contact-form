@@ -60,7 +60,7 @@
       <div class="admin-actions">
         <a href="/export?{{ http_build_query(request()->query()) }}" class="admin-export">エクスポート</a>
         <div class="admin-pagination">
-          {{ $contacts->links() }}
+          {{ $contacts->links('pagination') }}
         </div>
       </div>
 
@@ -73,7 +73,7 @@
               <th>性別</th>
               <th>メールアドレス</th>
               <th>お問い合わせの種類</th>
-              <th>詳細</th>
+              <th></th>
             </tr>
           </thead>
           <tbody>
@@ -103,7 +103,6 @@
     <div class="modal-overlay" onclick="closeModal()"></div>
     <div class="modal-content">
       <button class="modal-close" onclick="closeModal()">×</button>
-      <h2 class="modal-title">お名前</h2>
       <div class="modal-body">
         <div class="modal-row">
           <span class="modal-label">お名前</span>
