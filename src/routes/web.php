@@ -2,8 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\LoginController;
 use App\Http\Controllers\AdminController;
 
 /*
@@ -24,15 +22,6 @@ Route::post('/contacts', [ContactController::class, 'store']);
 Route::get('/thanks', function () {
     return view('thanks');
 })->name('thanks');
-
-// 認証関連
-Route::get('/register', [RegisterController::class, 'showRegisterForm'])->name('register');
-Route::post('/register', [RegisterController::class, 'register']);
-
-Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [LoginController::class, 'login']);
-
-Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
 
 // 管理画面（認証必須）
 Route::middleware('auth')->group(function () {
