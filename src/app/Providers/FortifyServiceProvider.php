@@ -12,8 +12,8 @@ use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
-use Laravel\Fortify\Http\Responses\FailedLoginResponse;
-use Laravel\Fortify\Http\Responses\LogoutResponse;
+use Laravel\Fortify\Contracts\FailedLoginResponse as FailedLoginResponseContract;
+use Laravel\Fortify\Contracts\LogoutResponse as LogoutResponseContract;
 use App\Http\Responses\CustomFailedLoginResponse;
 use App\Http\Responses\CustomLogoutResponse;
 
@@ -25,10 +25,10 @@ class FortifyServiceProvider extends ServiceProvider
     public function register(): void
     {
         // ログイン失敗時のエラーメッセージをカスタマイズ
-        $this->app->singleton(FailedLoginResponse::class, CustomFailedLoginResponse::class);
+        $this->app->singleton(FailedLoginResponseContract::class, CustomFailedLoginResponse::class);
 
         // ログアウト後のリダイレクト先をカスタマイズ
-        $this->app->singleton(LogoutResponse::class, CustomLogoutResponse::class);
+        $this->app->singleton(LogoutResponseContract::class, CustomLogoutResponse::class);
     }
 
     /**
