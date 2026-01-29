@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="{{ asset('css/admin.css') }}" />
 </head>
 
-<body>
+<body class="admin-body">
   <header class="header">
     <div class="header-inner">
       <a class="header-logo" href="/">
@@ -37,6 +37,7 @@
             <input type="text" name="keyword" class="admin-search-input" placeholder="名前やメールアドレスを入力してください" value="{{ request('keyword') }}">
             <select name="gender" class="admin-search-select">
               <option value="">性別</option>
+              <option value="">全て</option>
               <option value="1" {{ request('gender') == '1' ? 'selected' : '' }}>男性</option>
               <option value="2" {{ request('gender') == '2' ? 'selected' : '' }}>女性</option>
               <option value="3" {{ request('gender') == '3' ? 'selected' : '' }}>その他</option>
@@ -67,23 +68,23 @@
       <!-- お問い合わせ一覧テーブル -->
       <div class="admin-table-wrapper">
         <table class="admin-table">
-          <thead>
+          <thead class="admin-table-head">
             <tr>
-              <th>お名前</th>
-              <th>性別</th>
-              <th>メールアドレス</th>
-              <th>お問い合わせの種類</th>
-              <th></th>
+              <th class="table-head-title">お名前</th>
+              <th class="table-head-title">性別</th>
+              <th class="table-head-title">メールアドレス</th>
+              <th class="table-head-title">お問い合わせの種類</th>
+              <th class="table-head-title"></th>
             </tr>
           </thead>
           <tbody>
             @forelse($contacts as $contact)
-            <tr>
-              <td>{{ $contact->last_name }} {{ $contact->first_name }}</td>
-              <td>{{ $contact->gender_text }}</td>
-              <td>{{ $contact->email }}</td>
-              <td>{{ $contact->category->content }}</td>
-              <td>
+            <tr class="table-content-row">
+              <td class="table-content-text">{{ $contact->last_name }} {{ $contact->first_name }}</td>
+              <td class="table-content-text">{{ $contact->gender_text }}</td>
+              <td class="table-content-text">{{ $contact->email }}</td>
+              <td class="table-content-text">{{ $contact->category->content }}</td>
+              <td class="table-content-text">
                 <button class="admin-detail-btn" data-contact-id="{{ $contact->id }}" onclick="openModal('{{ $contact->id }}')">詳細</button>
               </td>
             </tr>

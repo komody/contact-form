@@ -26,12 +26,12 @@
   <main>
     <div class="auth-form-content">
       <h2 class="auth-form-heading">Register</h2>
-      <form class="auth-form" action="/register" method="post">
+      <form class="auth-form" action="/register" method="post" novalidate>
         @csrf
         <div class="auth-form-group">
           <label class="auth-form-label">お名前</label>
           <div class="auth-form-input">
-            <input class="auth-form-input-field" type="text" name="name" value="{{ old('name') }}" placeholder="例:山田 太郎" required />
+            <input class="auth-form-input-field" type="text" name="name" value="{{ old('name') }}" placeholder="例:山田 太郎" />
           </div>
           @error('name')
           <div class="auth-form-error">{{ $message }}</div>
@@ -40,7 +40,7 @@
         <div class="auth-form-group">
           <label class="auth-form-label">メールアドレス</label>
           <div class="auth-form-input">
-            <input class="auth-form-input-field" type="email" name="email" value="{{ old('email') }}" placeholder="例:test@example.com" required />
+            <input class="auth-form-input-field" type="email" name="email" value="{{ old('email') }}" placeholder="例:test@example.com" />
           </div>
           @error('email')
           <div class="auth-form-error">{{ $message }}</div>
@@ -49,7 +49,7 @@
         <div class="auth-form-group">
           <label class="auth-form-label">パスワード</label>
           <div class="auth-form-input">
-            <input class="auth-form-input-field" type="password" name="password" placeholder="例:coachtech106" required />
+            <input class="auth-form-input-field" type="password" name="password" placeholder="例:coachtech106" />
           </div>
           @error('password')
           <div class="auth-form-error">{{ $message }}</div>

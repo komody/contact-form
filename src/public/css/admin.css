@@ -1,4 +1,4 @@
-body {
+.admin-body {
   font-family: 'Inika', serif;
 }
 
@@ -107,7 +107,7 @@ body {
   background-image: url('/images/admin_select_icon.png');
   background-size: 15px 17px;
   background-repeat: no-repeat;
-  background-position: right 12px center;
+  background-position: right 6px center;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
@@ -205,19 +205,19 @@ body {
   border-collapse: collapse;
 }
 
-.admin-table thead {
+.admin-table-head {
   background: #8B7969;
   color: #fff;
 }
 
-.admin-table th {
+.table-head-title {
   padding: 15px;
   text-align: left;
   font-weight: 400;
   font-size: 16px;
 }
 
-.admin-table td {
+.table-content-text {
   padding: 15px;
   border-bottom: 1px solid #e0dfde;
   background: #fff;
@@ -225,17 +225,17 @@ body {
   font-size: 14px;
 }
 
-.admin-table tbody tr {
+.table-content-row {
   border: 1px solid #e0dfde;
   transition: background-color 0.2s ease;
 }
 
-.admin-table tbody tr:hover {
+.table-content-row:hover {
   background: #f4f4f4;
   cursor: pointer;
 }
 
-.admin-table tbody tr:hover td {
+.table-content-row:hover .table-content-text {
   background: #f4f4f4;
 }
 

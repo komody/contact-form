@@ -26,12 +26,12 @@
   <main>
     <div class="auth-form-content">
       <h2 class="auth-form-heading">Login</h2>
-      <form class="auth-form" action="/login" method="post">
+      <form class="auth-form" action="/login" method="post" novalidate>
         @csrf
         <div class="auth-form-group">
           <label class="auth-form-label">メールアドレス</label>
           <div class="auth-form-input">
-            <input class="auth-form-input-field" type="email" name="email" value="{{ old('email') }}" placeholder="例: test@example.com" required />
+            <input class="auth-form-input-field" type="email" name="email" value="{{ old('email') }}" placeholder="例: test@example.com" />
           </div>
           @error('email')
           <div class="auth-form-error">{{ $message }}</div>
@@ -40,7 +40,7 @@
         <div class="auth-form-group">
           <label class="auth-form-label">パスワード</label>
           <div class="auth-form-input">
-            <input class="auth-form-input-field" type="password" name="password" placeholder="例: coachtech1106" required />
+            <input class="auth-form-input-field" type="password" name="password" placeholder="例: coachtech1106" />
           </div>
           @error('password')
           <div class="auth-form-error">{{ $message }}</div>
