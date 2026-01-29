@@ -1,0 +1,35 @@
+# Dependencies
+node_modules/
+vendor/
+
+# Build outputs
+public/build/
+public/hot/
+public/storage/
+public/mix-manifest.json
+
+# Storage
+storage/
+bootstrap/cache/
+
+# Logs
+*.log
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Blade templates (Prettier cannot parse Blade syntax)
+**/*.blade.php

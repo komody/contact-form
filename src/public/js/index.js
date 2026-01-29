@@ -38,7 +38,7 @@ function deleteContact() {
 }
 
 // ESCキーでモーダルを閉じる
-document.addEventListener('keydown', function(e) {
+document.addEventListener('keydown', function (e) {
   if (e.key === 'Escape') {
     closeModal();
   }
