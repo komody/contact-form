@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="{{ asset('css/thanks.css') }}" />
 </head>
 
-<body>
+<body class="thanks-body">
   <main>
     <div class="thanks-content">
       <p class="thanks-heading">お問い合わせありがとうございました</p>

@@ -17,6 +17,10 @@ class LoginController extends Controller
         $credentials = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
+        ], [
+            'email.required' => 'メールアドレスを入力してください',
+            'email.email' => 'メールアドレスはメール形式で入力してください',
+            'password.required' => 'パスワードを入力してください',
         ]);
 
         if (Auth::attempt($credentials, $request->boolean('remember'))) {
@@ -25,7 +29,7 @@ class LoginController extends Controller
         }
 
         return back()->withErrors([
-            'email' => 'メールアドレスまたはパスワードが正しくありません。',
+            'password' => 'ログイン情報が登録されていません',
         ])->onlyInput('email');
     }
 

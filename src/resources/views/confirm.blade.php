@@ -13,7 +13,7 @@
   <link rel="stylesheet" href="{{ asset('css/confirm.css') }}" />
 </head>
 
-<body>
+<body class="confirm-body">
   <header class="header">
     <div class="header-inner">
       <a class="header-logo" href="/">
