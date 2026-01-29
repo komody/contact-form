@@ -23,23 +23,24 @@ class FortifyServiceProvider extends ServiceProvider
     public function register(): void
     {
         // ログイン失敗時のエラーメッセージをカスタマイズ
-        $this->app->singleton(FailedLoginResponse::class, function ($app) {
+        $this->app->singleton(FailedLoginResponse::class, function () {
             return new class extends FailedLoginResponse {
                 public function toResponse($request)
                 {
                     // 認証失敗の場合はパスワードフィールドにエラーを表示
-                    // デフォルトのauth.failedエラーを削除して、passwordフィールドにエラーを設定
+                    // 親クラスのtoResponseメソッドを呼び出さず、完全にオーバーライド
+                    // エラーバッグを明示的に指定して、デフォルトのエラーを上書き
                     return redirect()->route('login')
                         ->withInput($request->only('email'))
                         ->withErrors([
                             'password' => 'ログイン情報が登録されていません',
-                        ]);
+                        ], 'default');
                 }
             };
         });
 
         // ログアウト後のリダイレクト先をカスタマイズ
-        $this->app->singleton(LogoutResponse::class, function ($app) {
+        $this->app->singleton(LogoutResponse::class, function () {
             return new class extends LogoutResponse {
                 public function toResponse($request)
                 {
