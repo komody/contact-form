@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Contact;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class AdminController extends Controller
 {
@@ -40,7 +41,9 @@ class AdminController extends Controller
         // 日付検索（created_atで完全一致）
         if ($request->filled('date')) {
             $date = $request->input('date');
-            $query->whereDate('created_at', $date);
+            $startOfDay = Carbon::parse($date)->startOfDay();
+            $endOfDay = Carbon::parse($date)->endOfDay();
+            $query->whereBetween('created_at', [$startOfDay, $endOfDay]);
         }
     }
 
