@@ -26,7 +26,7 @@
   <main>
     <div class="auth-form-content">
       <h2 class="auth-form-heading">Register</h2>
-      <form class="auth-form" action="/register" method="post" novalidate>
+      <form class="auth-form" action="{{ route('register') }}" method="post" novalidate>
         @csrf
         <div class="auth-form-group">
           <label class="auth-form-label">お名前</label>

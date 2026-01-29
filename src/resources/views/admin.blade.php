@@ -19,7 +19,7 @@
       <a class="header-logo" href="/">
         FashionablyLate
       </a>
-      <form action="/logout" method="post" class="header-logout-form">
+      <form action="{{ route('logout') }}" method="post" class="header-logout-form">
         @csrf
         <button type="submit" class="header-logout">logout</button>
       </form>
