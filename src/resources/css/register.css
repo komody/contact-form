@@ -1,6 +1,6 @@
 .register-body {
   font-family: 'Inika', serif;
-  background-color: #F1ECE7;
+  background-color: #f1ece7;
 }
 
 .header {
@@ -25,7 +25,7 @@
 }
 
 .header-logo {
-  color: #8B7969;
+  color: #8b7969;
   text-decoration: none;
   font-weight: 400;
   font-size: 40px;
@@ -37,8 +37,8 @@
   height: 34px;
   right: 10px;
   background-color: rgba(240, 240, 240, 0.6);
-  color: #D9C6B5;
-  border: 1px solid #D9C6B5;
+  color: #d9c6b5;
+  border: 1px solid #d9c6b5;
   text-decoration: none;
   font-size: 20px;
   font-weight: 400;
@@ -58,7 +58,7 @@
   margin-bottom: 60px;
   font-size: 35px;
   font-weight: 400;
-  color: #8B7969;
+  color: #8b7969;
 }
 
 .auth-form {
@@ -78,7 +78,7 @@
   display: block;
   margin-bottom: 8px;
   font-size: 20px;
-  color: #8B7969;
+  color: #8b7969;
   font-weight: 400;
 }
 
@@ -94,7 +94,7 @@
   font-weight: 400;
   border: none;
   background: #f4f4f4;
-  color: #BEB1A6;
+  color: #beb1a6;
   box-sizing: border-box;
 }
 
@@ -103,7 +103,7 @@
 }
 
 .auth-form-input input::placeholder {
-  color: #BEB1A6;
+  color: #beb1a6;
 }
 
 .auth-form-error {

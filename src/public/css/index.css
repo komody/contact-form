@@ -16,7 +16,7 @@
 }
 
 .header-logo {
-  color: #8B7969;
+  color: #8b7969;
   text-decoration: none;
   font-weight: 400;
   font-size: 40px;
@@ -27,7 +27,7 @@
 }
 
 .contact-form-title {
-  color: #8B7969;
+  color: #8b7969;
   font-weight: 400;
   font-size: 35px;
   margin-bottom: 40px;
@@ -55,11 +55,10 @@
 }
 
 .form-label-item {
-  color: #8B7969;
+  color: #8b7969;
   font-weight: 400;
   font-size: 20px;
 }
-
 
 .form-label-required {
   margin-left: 5px;
@@ -82,7 +81,6 @@
   border-color: #ff0000;
 }
 
-
 .form-input-text .form-input-field,
 .form-input-textarea .form-input-field,
 .form-input-select .form-input-field {
@@ -93,7 +91,7 @@
   font-weight: 400;
   border: none;
   background: #f4f4f4;
-  color: #BEB1A6;
+  color: #beb1a6;
   appearance: none;
 }
 
@@ -102,7 +100,7 @@
   justify-content: space-between;
 }
 
-.form-input-name .form-input-field{
+.form-input-name .form-input-field {
   width: 287px;
   height: 38px;
 }
@@ -115,8 +113,8 @@
 
 .form-input-radio .radio-label {
   width: 80px;
-  color: #BEB1A6;
-  cursor: pointer
+  color: #beb1a6;
+  cursor: pointer;
 }
 
 .form-input-radio .form-input-field {
@@ -126,14 +124,14 @@
   -webkit-appearance: none;
   width: 20px;
   height: 20px;
-  border: 1px solid #8B7969;
+  border: 1px solid #8b7969;
   border-radius: 50%;
   cursor: pointer;
 }
 
-.form-input-radio input[type="radio"]:checked {
-  background: #8B7969;
-  border-color: #8B7969;
+.form-input-radio input[type='radio']:checked {
+  background: #8b7969;
+  border-color: #8b7969;
 }
 
 .form-input-radio .radio-label .form-radio-label-text {
@@ -141,16 +139,16 @@
   font-weight: 400;
 }
 
-.form-input-tel{
+.form-input-tel {
   display: flex;
   justify-content: space-between;
 }
 
-.form-input-tel .form-input-field{
+.form-input-tel .form-input-field {
   width: 172px;
 }
 
-.form-input-select .form-input-field{
+.form-input-select .form-input-field {
   width: 332px;
   height: 38px;
   background-image: url('/images/contact_select_icon.png');
@@ -159,15 +157,15 @@
   background-position: right 20px center;
   padding-right: 40px;
 }
-.form-input-select .input-field-option{
+.form-input-select .input-field-option {
   display: flex;
   justify-content: space-between;
-  color: #BEB1A6;
+  color: #beb1a6;
   font-size: 14px;
   font-weight: 400;
 }
 
-.form-input-textarea .form-input-field{
+.form-input-textarea .form-input-field {
   padding-top: 16px;
   height: 129px;
 }
