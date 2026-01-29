@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\ContactConfirmRequest;
 use App\Models\Contact;
 use App\Models\Category;
 
@@ -25,68 +26,9 @@ class ContactController extends Controller
         return view('index', compact('categories', 'oldData'));
     }
 
-    public function confirm(Request $request)
+    public function confirm(ContactConfirmRequest $request)
     {
-        $validated = $request->validate([
-            'first_name' => ['required', 'string', 'max:8'],
-            'last_name' => ['required', 'string', 'max:8'],
-            'gender' => ['required', 'integer', 'in:1,2,3'],
-            'email' => ['required', 'email'],
-            'tel1' => ['required', 'string', 'max:5'],
-            'tel2' => ['required', 'string', 'max:5'],
-            'tel3' => ['required', 'string', 'max:5'],
-            'address' => ['required', 'string'],
-            'building' => ['nullable', 'string', 'max:255'],
-            'category_id' => ['required', 'exists:categories,id'],
-            'detail' => ['required', 'string', 'max:120'],
-        ], [
-            'first_name.required' => '姓を入力してください',
-            'first_name.max' => 'お名前（姓）は8文字以内で入力してください。',
-            'last_name.required' => '名を入力してください',
-            'last_name.max' => 'お名前（名）は8文字以内で入力してください。',
-            'gender.required' => '性別を選択してください',
-            'gender.in' => '性別を選択してください',
-            'email.required' => 'メールアドレスを入力してください',
-            'email.email' => 'メールアドレスはメール形式で入力してください',
-            'tel1.required' => '電話番号を入力してください',
-            'tel1.max' => '電話番号は5桁まで数字で入力してください',
-            'tel2.required' => '電話番号を入力してください',
-            'tel2.max' => '電話番号は5桁まで数字で入力してください',
-            'tel3.required' => '電話番号を入力してください',
-            'tel3.max' => '電話番号は5桁まで数字で入力してください',
-            'address.required' => '住所を入力してください',
-            'category_id.required' => 'お問い合わせの種類を選択してください',
-            'category_id.exists' => 'お問い合わせの種類を選択してください',
-            'detail.required' => 'お問い合わせ内容を入力してください',
-            'detail.max' => 'お問い合わせ内容は120文字以内で入力してください',
-        ]);
-
-        // 電話番号の全角チェック
-        $telFields = ['tel1', 'tel2', 'tel3'];
-        foreach ($telFields as $field) {
-            if (isset($validated[$field]) && $validated[$field] !== '') {
-                // 全角数字をチェック（全角数字: ０-９）
-                if (preg_match('/[０-９]/u', $validated[$field])) {
-                    return back()->withErrors([
-                        $field => '電話番号は半角英数字で入力してください',
-                    ])->withInput();
-                }
-                // 半角数字以外の文字をチェック
-                if (!preg_match('/^[0-9]+$/', $validated[$field])) {
-                    return back()->withErrors([
-                        $field => '電話番号は半角英数字で入力してください',
-                    ])->withInput();
-                }
-            }
-        }
-
-        // お名前の合計文字数チェック（姓と名を合わせて8文字以内）
-        $fullNameLength = mb_strlen($validated['first_name'] . $validated['last_name']);
-        if ($fullNameLength > 8) {
-            return back()->withErrors([
-                'first_name' => 'お名前は姓と名を合わせて8文字以内で入力してください',
-            ])->withInput();
-        }
+        $validated = $request->validated();
 
         // 電話番号を結合（ハイフンなし）
         $tel = $validated['tel1'] . $validated['tel2'] . $validated['tel3'];
