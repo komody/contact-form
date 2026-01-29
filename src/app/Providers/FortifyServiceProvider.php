@@ -14,6 +14,8 @@ use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
 use Laravel\Fortify\Http\Responses\FailedLoginResponse;
 use Laravel\Fortify\Http\Responses\LogoutResponse;
+use App\Http\Responses\CustomFailedLoginResponse;
+use App\Http\Responses\CustomLogoutResponse;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -23,31 +25,10 @@ class FortifyServiceProvider extends ServiceProvider
     public function register(): void
     {
         // ログイン失敗時のエラーメッセージをカスタマイズ
-        $this->app->singleton(FailedLoginResponse::class, function () {
-            return new class extends FailedLoginResponse {
-                public function toResponse($request)
-                {
-                    // 認証失敗の場合はパスワードフィールドにエラーを表示
-                    // 親クラスのtoResponseメソッドを呼び出さず、完全にオーバーライド
-                    // エラーバッグを明示的に指定して、デフォルトのエラーを上書き
-                    return redirect()->route('login')
-                        ->withInput($request->only('email'))
-                        ->withErrors([
-                            'password' => 'ログイン情報が登録されていません',
-                        ], 'default');
-                }
-            };
-        });
+        $this->app->singleton(FailedLoginResponse::class, CustomFailedLoginResponse::class);
 
         // ログアウト後のリダイレクト先をカスタマイズ
-        $this->app->singleton(LogoutResponse::class, function () {
-            return new class extends LogoutResponse {
-                public function toResponse($request)
-                {
-                    return redirect('/login');
-                }
-            };
-        });
+        $this->app->singleton(LogoutResponse::class, CustomLogoutResponse::class);
     }
 
     /**
