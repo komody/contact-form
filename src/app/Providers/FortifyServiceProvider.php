@@ -4,17 +4,13 @@ namespace App\Providers;
 
 use App\Actions\Fortify\CreateNewUser;
 use App\Actions\Fortify\ResetUserPassword;
-use App\Actions\Fortify\UpdateUserPassword;
-use App\Actions\Fortify\UpdateUserProfileInformation;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
-use Laravel\Fortify\Contracts\FailedLoginResponse as FailedLoginResponseContract;
 use Laravel\Fortify\Contracts\LogoutResponse as LogoutResponseContract;
-use App\Http\Responses\CustomFailedLoginResponse;
 use App\Http\Responses\CustomLogoutResponse;
 
 class FortifyServiceProvider extends ServiceProvider
@@ -24,9 +20,6 @@ class FortifyServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        // ログイン失敗時のエラーメッセージをカスタマイズ
-        $this->app->singleton(FailedLoginResponseContract::class, CustomFailedLoginResponse::class);
-
         // ログアウト後のリダイレクト先をカスタマイズ
         $this->app->singleton(LogoutResponseContract::class, CustomLogoutResponse::class);
     }
@@ -37,18 +30,12 @@ class FortifyServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Fortify::createUsersUsing(CreateNewUser::class);
-        Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
-        Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
 
         RateLimiter::for('login', function (Request $request) {
             $email = (string) $request->email;
 
             return Limit::perMinute(5)->by($email . $request->ip());
-        });
-
-        RateLimiter::for('two-factor', function (Request $request) {
-            return Limit::perMinute(5)->by($request->session()->get('login.id'));
         });
 
         // ログインビューをカスタマイズ
@@ -85,8 +72,10 @@ class FortifyServiceProvider extends ServiceProvider
                 return $user;
             }
 
-            // 認証失敗の場合はnullを返す（FailedLoginResponseが呼ばれる）
-            return null;
+            // 認証失敗時はパスワード欄にエラーを出す
+            throw \Illuminate\Validation\ValidationException::withMessages([
+                'password' => 'ログイン情報が登録されていません',
+            ]);
         });
     }
 }

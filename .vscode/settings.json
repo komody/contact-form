@@ -1,17 +1,29 @@
 {
-  "[blade]": {
-    "editor.formatOnSave": false
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[markdown]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "[php]": {
-    "editor.formatOnSave": false
+    "editor.defaultFormatter": "bmewburn.vscode-intelephense-client"
   },
-  "files.associations": {
-    "*.blade.php": "blade"
-  },
-  "blade.format.enable": false,
-  "javascript.validate.enable": false,
-  "typescript.validate.enable": false,
-  "vetur.validation.script": false,
-  "vetur.validation.style": false,
-  "vetur.validation.template": false
+  "prettier.requireConfig": true,
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true
 }
